@@ -1,6 +1,6 @@
 export interface IDota2Post {
-  steamId?: string;
   classId?: number;
+  steamId?: string;
   mmr?: number;
   confidence?: number;
   gameMode?: string;

@@ -1,8 +1,10 @@
-# skelly-app
+# skelly-webhooks
 
-Skelly webhooks provide real-time updates for Dota 2 and Valorant.
+[Skelly](https://skelly.gg) webhooks provide real-time updates for [Dota 2](https://www.dota2.com/) and [Valorant](https://playvalorant.com/).
 
-This library works on Node.js.
+The API sends the most up-to-date information using the POST method whenever something changes. Note that all fields are optional and some may be empty at the beginning.
+
+This library works with [Node.js](https://nodejs.org/).
 
 # Installation
 
@@ -10,6 +12,106 @@ Installing the package using npm:
 
 ```
 npm install skelly-webhooks
+```
+
+# Dota 2
+
+## Types
+
+Post data for Dota 2:
+
+```
+export interface IDota2Post {
+  classId: 7314;
+  steamId?: string;
+  mmr?: number;
+  confidence?: number;
+  gameMode?: "NONE" | "GameMode_AllPick" | "GameMode_Turbo";
+  lobbyType?: string;
+  gameState?: "playing" | "idle" | "spectating";
+  players?: {
+    steamId: string;
+    accountId: string;
+    name: string;
+    hero: string;
+    team: 2 | 3;
+    role: 0 | 1 | 2 | 4 | 8 | 16 | "other";
+    team_slot: 0 | 1 | 2 | 3 | 4;
+    player_index: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+  }[];
+}
+```
+
+## Fields
+
+---
+
+| Field       | Type   | Description                                                                |
+| ----------- | ------ | -------------------------------------------------------------------------- |
+| mmr         | number | Player's current mmr                                                       |
+| confidence  | number | Player's mmr confidence level                                              |
+| gameMode    | string | The game mode played, e.g. "NONE", "GameMode_AllPick", or "GameMode_Turbo" |
+| lobbyType   | string | The lobby type, e.g. "DOTA_lobby_type_name_custom_lobby"                   |
+| gameState   | string | Either "playing", "idle" or "spectating"                                   |
+| players     | array  | An array of player objects                                                 |
+| steamId     | string | 64-bit Steam ID                                                            |
+| accountId   | string | 32-bit account ID, also known as friend ID                                 |
+| name        | string | The player's name                                                          |
+| hero        | string | The NPC short name of the player, e.g. legion_commander                    |
+| team        | number | The player's team, i.e. 2 for radiant and 3 for dire                       |
+| role        | number | Role defined for the player. Possible values: 0, 1, 2, 4, 8, 16, or other  |
+| teamSlot    | number | A value between 0 and 4                                                    |
+| playerIndex | number | A value between 0 and 9 in standard games                                  |
+
+---
+
+# Adding webhooks
+
+The user can either **manually add** a webhook to their settings or you can forward them to a Skelly page to **automatically add** a webhook.
+
+For automation, forward the user to the following page: https://skelly.gg/webhook
+
+## Query paramters
+
+---
+
+| Parameter | Requirement | Description                                                                                                                                                             |
+| --------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| url       | mandatory   | Your webhook URL                                                                                                                                                        |
+| source    | mandatory   | Identify who you are (for the user to recognize you)                                                                                                                    |
+| image     | optional    | Image shown on the Skelly page (for the user to recognize you)                                                                                                          |
+| game      | mandatory   | The game you want to get real-time data for. To get data for multiple games, you can add this parameter multiple times. The supported games are 'dota2' and 'valorant'. |
+
+---
+
+## Types
+
+```
+interface QueryParams {
+  url: string;
+  source: string;
+  image?: string;
+  game: "dota2" | "valorant";
+}
+```
+
+## Example
+
+```
+const baseUrl = "https://skelly.gg";
+const queryParams: WebhookQueryParams = {
+  url: "https://skelly.dotabod.com",
+  source: "dotabod",
+  image: "https://avatars.githubusercontent.com/u/117842146",
+  game: "dota2",
+};
+
+const urlParams = new URLSearchParams(queryParams);
+const url = `${baseUrl}?${urlParams.toString()}`;
+
+console.log(url);
+
+// https://skelly.gg?url=https%3A%2F%2Fskelly.dotabod.com&source=dotabod&image=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F117842146&game=dota2
 ```
 
 # Local testing
@@ -28,7 +130,7 @@ Adding Webhooks to your Skelly account:
 
 ## Start server
 
-Running a test server to listen to events:
+Running a test server to listen to posts from Skelly:
 
 ```
 git clone https://github.com/Skelly-gg/skelly-webhooks.git
