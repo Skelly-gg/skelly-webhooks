@@ -44,8 +44,6 @@ Run a test server to listen to post messsages from Skelly:
 
 ```
 
-CAN WE DO IT WITH THE NPM package???
-
 git clone https://github.com/Skelly-gg/skelly-webhooks.git
 
 cd skelly-webhooks
@@ -111,6 +109,66 @@ Listening at http://127.0.0.1:3510
 }
 ```
 
+# Adding webhooks
+
+For automation, forward the user to the following page: https://skelly.gg/webhook.
+
+Provide the query parameters described below.
+
+## Query paramters
+
+---
+
+| Parameter | Requirement | Description                                                                                                                                                             |
+| --------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| url       | mandatory   | Your webhook URL                                                                                                                                                        |
+| secret    | optional    | String of 10 to 50 characters URL                                                                                                                                       |
+| source    | mandatory   | Identify who you are (for the user to recognize you)                                                                                                                    |
+| image     | optional    | Image shown on the Skelly page (for the user to recognize you)                                                                                                          |
+| game      | mandatory   | The game you want to get real-time data for. To get data for multiple games, you can add this parameter multiple times. The supported games are 'dota2' and 'valorant'. |
+
+---
+
+## Types
+
+```
+interface QueryParams {
+  url: string;
+  source: string;
+  image?: string;
+  game: "dota2" | "valorant";
+}
+```
+
+## Example
+
+```
+const baseUrl = "https://skelly.gg";
+
+const queryParams: WebhookQueryParams = {
+  url: "https://skelly.dotabod.com",
+  source: "dotabod",
+  image: "https://avatars.githubusercontent.com/u/117842146",
+  game: "dota2",
+};
+
+const urlParams = new URLSearchParams(queryParams);
+
+const url = `${baseUrl}?${urlParams.toString()}`;
+
+console.log(url);
+
+// https://skelly.gg?url=https%3A%2F%2Fskelly.dotabod.com&source=dotabod&image=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F117842146&game=dota2
+```
+
+# Message authentication
+
+Skelly provides message authentication, which allows you to get signed messages from Skelly. This feature is optional.
+
+If you want messages to be signed, you can add a secret key to your webhook. The secret key should be between 10 and 50 characters long. Skelly then uses this secret to sign massages using HMAC-SHA256 (hash-based message authentication code). The signature is passed in the POST request's header "skelly-signature".
+
+To create secret keys you should consider using a random byte generator meant for cryptography, e.g. crypto.randomBytes(16) to create 16 random bytes. The 16 random bytes could then be converted to a Base64 string and be used as secret key.
+
 # Dota 2
 
 ## Post format
@@ -172,63 +230,3 @@ export interface IDota2Post {
 | playerIndex | number | A value between 0 and 9 in standard games                                 |
 
 ---
-
-# Adding webhooks
-
-For automation, forward the user to the following page: https://skelly.gg/webhook.
-
-Provide the query parameters described below.
-
-## Query paramters
-
----
-
-| Parameter | Requirement | Description                                                                                                                                                             |
-| --------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| url       | mandatory   | Your webhook URL                                                                                                                                                        |
-| secret    | optional    | String of 10 to 50 characters URL                                                                                                                                       |
-| source    | mandatory   | Identify who you are (for the user to recognize you)                                                                                                                    |
-| image     | optional    | Image shown on the Skelly page (for the user to recognize you)                                                                                                          |
-| game      | mandatory   | The game you want to get real-time data for. To get data for multiple games, you can add this parameter multiple times. The supported games are 'dota2' and 'valorant'. |
-
----
-
-## Types
-
-```
-interface QueryParams {
-  url: string;
-  source: string;
-  image?: string;
-  game: "dota2" | "valorant";
-}
-```
-
-## Example
-
-```
-const baseUrl = "https://skelly.gg";
-
-const queryParams: WebhookQueryParams = {
-  url: "https://skelly.dotabod.com",
-  source: "dotabod",
-  image: "https://avatars.githubusercontent.com/u/117842146",
-  game: "dota2",
-};
-
-const urlParams = new URLSearchParams(queryParams);
-
-const url = `${baseUrl}?${urlParams.toString()}`;
-
-console.log(url);
-
-// https://skelly.gg?url=https%3A%2F%2Fskelly.dotabod.com&source=dotabod&image=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F117842146&game=dota2
-```
-
-# Message authentication
-
-Skelly provides message authentication, which allows you to get signed messages from Skelly. This feature is optional.
-
-If you want messages to be signed, you can add a secret key to your webhook. The secret key should be between 10 and 50 characters long. Skelly then uses this secret to sign massages using HMAC-SHA256 (hash-based message authentication code). The signature is passed in the POST request's header "skelly-signature".
-
-To create secret keys you should consider using a random byte generator meant for cryptography, e.g. crypto.randomBytes(16) to create 16 random bytes. The 16 random bytes could then be converted to a Base64 string and be used as secret key.
