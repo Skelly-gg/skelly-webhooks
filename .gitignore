@@ -1,4 +1,6 @@
 *
+!img
+!img/*
 !src
 !src/*
 !.gitignore
