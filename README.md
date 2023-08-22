@@ -40,7 +40,13 @@ The process to automatically add webhooks is described futher below.
 
 ## Start server
 
-Run a test server to listen to post messsages from Skelly:
+Run a test server to listen to post messsages from Skelly using the npm package:
+
+```
+node .\node_modules\skelly-webhooks\dist\index.js
+```
+
+Or you can also download this GitHub repository:
 
 ```
 
@@ -96,12 +102,6 @@ Listening at http://127.0.0.1:3510
       "rank": 80,
       "playerIndex": 2
     },
-    {
-      "steamId": "76561198105816194",
-      "accountId": "145550466",
-      "name": "DuBu",
-      ...
-    }
     ...
   ],
   "messageId": "b7fe2741-b92b-4e2f-ae8c-5e8d83fb0166",
