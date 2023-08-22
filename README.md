@@ -109,11 +109,9 @@ Listening at http://127.0.0.1:3510
 }
 ```
 
-# Adding webhooks
+# Adding webhooks automatically
 
-For automation, forward the user to the following page: https://skelly.gg/webhook.
-
-Provide the query parameters described below.
+For automation, forward the user to the following page: https://skelly.gg/webhook. And provide the query parameters described below.
 
 ## Query paramters
 
