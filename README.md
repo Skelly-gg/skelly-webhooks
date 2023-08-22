@@ -10,7 +10,7 @@ This library works with [Node.js](https://nodejs.org/).
 
 ## npm package
 
-Installing the package using npm:
+Install the package using npm:
 
 ```
 npm install skelly-webhooks
@@ -18,13 +18,21 @@ npm install skelly-webhooks
 
 ## Download Skelly
 
-Download [Skelly for Windows](https://www.overwolf.com/app/Skelly) Skelly for Windows from Overwolf.
+Download [Skelly for Windows](https://www.overwolf.com/app/Skelly) from Overwolf.
 
 ## Create account
 
 Create a personal Skelly account.
 
-![Image: Skelly create account](https://github.com/Skelly-gg/skelly-webhooks/img/SkellyWebhook.pngblob/a6810ca077fecf7bae4ecf61e0dba75cc217c371/img/SkellyLogin.png)
+![Image: Skelly create account](https://github.com/Skelly-gg/skelly-webhooks/blob/a6810ca077fecf7bae4ecf61e0dba75cc217c371/img/SkellyLogin.png)
+
+You need to confirm the verification link sent to you by e-mail. You might need to check you spam folder.
+
+## Add webhook
+
+You can either **manually add** a webhook to your settings or you can be forwarded by another tool to the Skelly page to **automatically add** a webhook.
+
+The process to automatically add webhooks is described futher below.
 
 ![Image: Skelly add webhook](https://github.com/Skelly-gg/skelly-webhooks/blob/a6810ca077fecf7bae4ecf61e0dba75cc217c371/img/SkellyWebhook.png)
 
@@ -91,8 +99,6 @@ export interface IDota2Post {
 ---
 
 # Adding webhooks
-
-The user can either **manually add** a webhook to their settings or you can forward them to a Skelly page to **automatically add** a webhook.
 
 For automation, forward the user to the following page: https://skelly.gg/webhook
 
