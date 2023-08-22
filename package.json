@@ -1,0 +1,32 @@
+{
+  "name": "skelly-webhooks",
+  "version": "1.0.0",
+  "description": "Webhooks providing real-time updates for Dota 2 and Valorant",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "deploy": "npm version patch && npm run build && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skelly-gg/skelly-webhooks.git"
+  },
+  "keywords": [
+    "Skelly",
+    "Integration",
+    "Webhooks"
+  ],
+  "author": "Skelly.gg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Skelly-gg/skelly-webhooks/issues"
+  },
+  "homepage": "https://skelly.gg/integration",
+  "dependencies": {
+    "@types/node": "^20.5.2"
+  }
+}
