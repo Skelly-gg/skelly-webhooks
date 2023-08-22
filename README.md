@@ -16,7 +16,7 @@ npm install skelly-webhooks
 
 # Dota 2
 
-## Types
+## Post
 
 Post data for Dota 2:
 
@@ -42,26 +42,37 @@ export interface IDota2Post {
 }
 ```
 
-## Fields
+## Fields: Post
 
 ---
 
-| Field       | Type   | Description                                                                |
-| ----------- | ------ | -------------------------------------------------------------------------- |
-| mmr         | number | Player's current mmr                                                       |
-| confidence  | number | Player's mmr confidence level                                              |
-| gameMode    | string | The game mode played, e.g. "NONE", "GameMode_AllPick", or "GameMode_Turbo" |
-| lobbyType   | string | The lobby type, e.g. "DOTA_lobby_type_name_custom_lobby"                   |
-| gameState   | string | Either "playing", "idle" or "spectating"                                   |
-| players     | array  | An array of player objects                                                 |
-| steamId     | string | 64-bit Steam ID                                                            |
-| accountId   | string | 32-bit account ID, also known as friend ID                                 |
-| name        | string | The player's name                                                          |
-| hero        | string | The NPC short name of the player, e.g. legion_commander                    |
-| team        | number | The player's team, i.e. 2 for radiant and 3 for dire                       |
-| role        | number | Role defined for the player. Possible values: 0, 1, 2, 4, 8, 16, or other  |
-| teamSlot    | number | A value between 0 and 4                                                    |
-| playerIndex | number | A value between 0 and 9 in standard games                                  |
+| Field      | Type   | Description                                                                |
+| ---------- | ------ | -------------------------------------------------------------------------- |
+| classId    | number | Game the post refers to (Dota2: 7314, Valorant: 21640)                     |
+| steamId    | string | 64-bit Steam ID                                                            |
+| mmr        | number | Player's current mmr                                                       |
+| confidence | number | Player's mmr confidence level                                              |
+| gameMode   | string | The game mode played, e.g. "NONE", "GameMode_AllPick", or "GameMode_Turbo" |
+| lobbyType  | string | The lobby type, e.g. "DOTA_lobby_type_name_custom_lobby"                   |
+| gameState  | string | Either "playing", "idle" or "spectating"                                   |
+| players    | array  | An array of player objects                                                 |
+
+---
+
+## Fields: Player object
+
+---
+
+| Field       | Type   | Description                                                               |
+| ----------- | ------ | ------------------------------------------------------------------------- |
+| steamId     | string | 64-bit Steam ID                                                           |
+| accountId   | string | 32-bit account ID, also known as friend ID                                |
+| name        | string | The player's name                                                         |
+| hero        | string | The NPC short name of the player, e.g. legion_commander                   |
+| team        | number | The player's team, i.e. 2 for radiant and 3 for dire                      |
+| role        | number | Role defined for the player. Possible values: 0, 1, 2, 4, 8, 16, or other |
+| teamSlot    | number | A value between 0 and 4                                                   |
+| playerIndex | number | A value between 0 and 9 in standard games                                 |
 
 ---
 
@@ -70,6 +81,10 @@ export interface IDota2Post {
 The user can either **manually add** a webhook to their settings or you can forward them to a Skelly page to **automatically add** a webhook.
 
 For automation, forward the user to the following page: https://skelly.gg/webhook
+
+## Manually
+
+## Automated
 
 ## Query paramters
 
