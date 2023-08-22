@@ -8,11 +8,25 @@ This library works with [Node.js](https://nodejs.org/).
 
 # Installation
 
+## npm package
+
 Installing the package using npm:
 
 ```
 npm install skelly-webhooks
 ```
+
+## Download Skelly
+
+Download [Skelly for Windows](https://www.overwolf.com/app/Skelly) Skelly for Windows from Overwolf.
+
+## Create account
+
+Create a personal Skelly account.
+
+![Image: Skelly create account](https://github.com/Skelly-gg/skelly-webhooks/img/SkellyWebhook.pngblob/a6810ca077fecf7bae4ecf61e0dba75cc217c371/img/SkellyLogin.png)
+
+![Image: Skelly add webhook](https://github.com/Skelly-gg/skelly-webhooks/blob/a6810ca077fecf7bae4ecf61e0dba75cc217c371/img/SkellyWebhook.png)
 
 # Dota 2
 
@@ -132,10 +146,6 @@ console.log(url);
 # Local testing
 
 ## Download Skelly
-
-Download Skelly for Windows from Overwolf.
-
-https://www.overwolf.com/app/Skelly
 
 ## Create account
 
