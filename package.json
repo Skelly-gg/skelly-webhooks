@@ -20,7 +20,8 @@
     "integration",
     "webhooks",
     "dota2",
-    "valorant"
+    "valorant",
+    "overwolf"
   ],
   "author": "Skelly.gg",
   "license": "ISC",
