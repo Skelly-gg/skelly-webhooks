@@ -1,6 +1,6 @@
 {
   "name": "skelly-webhooks",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Webhooks providing real-time updates for Dota 2 and Valorant",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
