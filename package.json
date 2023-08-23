@@ -16,9 +16,11 @@
     "url": "git+https://github.com/Skelly-gg/skelly-webhooks.git"
   },
   "keywords": [
-    "Skelly",
-    "Integration",
-    "Webhooks"
+    "skelly",
+    "integration",
+    "webhooks",
+    "dota2",
+    "valorant"
   ],
   "author": "Skelly.gg",
   "license": "ISC",
