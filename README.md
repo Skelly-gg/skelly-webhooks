@@ -49,7 +49,6 @@ node .\node_modules\skelly-webhooks\dist\index.js
 Or you can also download this GitHub repository:
 
 ```
-
 git clone https://github.com/Skelly-gg/skelly-webhooks.git
 
 cd skelly-webhooks
